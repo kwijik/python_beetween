@@ -3,17 +3,15 @@ un mot français de 10 lettres dont le hash sha256 hexa contient fb80
 
 '''
 
-
+# free list of french words downloaded from https://raw.githubusercontent.com/giacomodrago/ruzzlesolverpro/master/languages/French/dictionary.txt
 path = './dictionary.txt'
 
 new_words = []
-
 with open(path) as f:
     for word in f:
         word = word.rstrip()  # delete invisible symbol
         if (len(word) == 10):
             new_words.append(word)
-   # new_words = [word.strip() for word in f if len(word) == 10]
 
 print("len " + str(len(new_words)))
 

@@ -1,25 +1,21 @@
 '''
-
-
 un mot français de 10 lettres dont le hash sha256 hexa contient fb80
-
-
 
 '''
 
 
 path = './dictionary.txt'
-words = open(path,'r')
-words = words.readlines()
-import codecs
 
-count = 0
 new_words = []
 
 with open(path) as f:
-    new_words = [word.strip() for word in f]
+    for word in f:
+        word = word.rstrip()  # delete invisible symbol
+        if (len(word) == 10):
+            new_words.append(word)
+   # new_words = [word.strip() for word in f if len(word) == 10]
 
-print(len(new_words))
+print("len " + str(len(new_words)))
 
 import hashlib
 
@@ -28,22 +24,10 @@ def sha_code(word):
     hex_dig = hash_object.hexdigest()
     return hex_dig
 
-chosen_words = []
-while count < len(new_words):
-    word = words[count].rstrip()
-    if( len(word) == 10):
-        #new_words.append(word)
-       # print(word[0:])
-        chosen_words.append(word)
-
-    count += 1
-
-hashes = []
-def sorted():
-    for w in chosen_words:
+def sorted(array_of_words):
+    for w in array_of_words:
         hash_w = sha_code(w)
         #print(w)
-        hashes.append(sha_code(w))
         if ("fb80" in hash_w):
            # print("word: " +word + "hashcode: ")
             w = w.rstrip()
@@ -53,22 +37,10 @@ def sorted():
 
 
 
-#w = "salut".encode('utf-8')
-w = "cavaleries"
+sorted(new_words)
 
 
 
-#print(sha_code(w))
-
-sorted()
-print(sha_code(chosen_words[1]))
-print(chosen_words[1])
-print(hashes[1])
-
-#import hashlib
-#hash_object = hashlib.sha256(w)
-#hex_dig = hash_object.hexdigest()
-#print(hex_dig)
 print("sinusoidal:")
 print(sha_code("sinusoidal"))
 print("----------")
